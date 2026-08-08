@@ -56,7 +56,7 @@ int32_t ct_instr_setup(uint8_t *pInstrPak)
 	double dFr_int,dFr_frac;
 
 	int16p16_t iFr;
-	uint32_t uiX,uiY;
+	uint32_t uiX;
 
 	/**
 	 * In order for an instrument pack to be considered valid it must reside
@@ -64,8 +64,7 @@ int32_t ct_instr_setup(uint8_t *pInstrPak)
 	 *
 	 * Nothing elaborate, assuming good intentions with the data we're given.
 	 */
-	uiY = (uint32_t)pInstrPak;
-	if(0 != (uiY % sizeof(uint32_t)))
+	if(0 != (uintptr_t)pInstrPak % sizeof(uint32_t))
 	{
 		return -1;
 	}
